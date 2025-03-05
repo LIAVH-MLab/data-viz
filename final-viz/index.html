@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<meta charset="UTF-8">
+
+<head>
+    <script src="https://d3js.org/d3.v4.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.15.0/lodash.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.js"></script>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+<!-- TItle and ribbon -->
+    <div class="row">
+        <h3>DKG South Artefact Distribution</h3>
+        <div class="btn-group" role="group" aria-label="Time selector" > </div>
+            <button type="button" class="btn btn-secondary">All</button>
+            <button type="button" class="btn btn-secondary">Late Ia</button>
+            <button type="button" class="btn btn-secondary">Late Ib</button>
+            <button type="button" class="btn btn-secondary">Late II</button>
+            <button type="button" class="btn btn-secondary">Late III</button>
+            <button type="button" class="btn btn-secondary">Intermediate I</button>
+            <button type="button" class="btn btn-secondary">Intermediate II</button>
+            <button type="button" class="btn btn-secondary">Intermediate III</button>
+            <button type="button" class="btn btn-secondary">Early Periods</button>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- chart -->
+        <div class="col" id="chart">
+            <!-- <svg id="container"></svg> -->
+            <svg id="container" viewBox="0 0 100% 100%" preserveAspectRatio="none"></svg>
+        </div>
+        
+        <!-- map -->
+        <div class="col">
+            <div id="map"></div>
+        </div>
+
+    </div>
+</body>
+
+<script src="/map-chart.js"></script>
+
+</html>
