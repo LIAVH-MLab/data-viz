@@ -1,0 +1,61 @@
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('/landing/assets/fonts/source-sans-pro/SourceSansPro-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('/landing/assets/fonts/source-sans-pro/SourceSansPro-Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* light */
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('/landing/assets/fonts/source-sans-pro/SourceSansPro-Light.otf') format('opentype');
+    font-weight: light;
+    font-style: normal;
+}
+
+html,body {
+    margin: 0;
+    padding: 0;
+    /* font-family: 'Roboto', sans-serif; */
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+    color: #333;
+    background-color: #FAF7ED;
+}
+
+main {
+    padding: 25px;
+    box-sizing: border-box;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+.title > h2 {
+    /* font-size: 2.5em; */
+    font-weight: lighter;
+    margin: 0;
+}
+
+.title > h1 {
+    margin: 0;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+image {
+    cursor: pointer;
+}
