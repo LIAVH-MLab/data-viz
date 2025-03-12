@@ -1,11 +1,9 @@
-
-
 const links = {
     'dancing-girl': '/',
     'wall': '/wall',
     'section': '/section',
     'well': '/well',
-    'vessel': '/final-viz',
+    'vessel': 'data-viz/final-viz',
 
 }
 
