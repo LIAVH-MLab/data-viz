@@ -159,7 +159,6 @@ d3.csv("https://raw.githubusercontent.com/LIAVH-MLab/mohenjo-daro/refs/heads/mas
         return (d['House'] === "3") || (d['House'] === "4") || (d['House'] === "5");
     });
 
-    console.log( arts );
     // Assign types to variables
     // Create Block_House Variable
     arts = arts.map((d,i) => ({
@@ -187,7 +186,6 @@ d3.csv("https://raw.githubusercontent.com/LIAVH-MLab/mohenjo-daro/refs/heads/mas
 
 
     resizeSVG(arts);
-
 
     window.addEventListener('resize', function() {
         resizeSVG(arts);
