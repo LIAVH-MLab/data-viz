@@ -27,10 +27,6 @@ document.querySelectorAll('image').forEach(img => {
         imageHide.classList.remove('hide');
         imageHide.classList.add('show');
 
-        console.log(imageShow);
-        console.log(imageHide);
-        console.log(' ------- ' );
-       
     });
 
     img.addEventListener('mouseleave', function() {
