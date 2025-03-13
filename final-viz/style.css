@@ -134,3 +134,8 @@ canvas {
     width: 145px;
     height: auto;
 }
+
+.hover {
+    width: calc(4.5 * 3) !important;
+    height: calc(4.5 * 3) !important;
+}
