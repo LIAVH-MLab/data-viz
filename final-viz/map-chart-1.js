@@ -247,8 +247,6 @@ function createScatterPlot( data , xScale, yScale) {
 
     });
 
-
-
 }
 
 function resizeSVG(arts) {
@@ -377,6 +375,37 @@ function createMap( data ){
         .attr("y", d => project([d.x, d.y]).y - rad); // Adjust y position to center the icon
 
     updateGrid();
+
+    // add a on mouse enter evert for locators
+    locators.on("mouseenter", function(d) {
+        hoveredObject = d['ind'];
+        console.log("hoveredObject", hoveredObject)
+
+        d3.select(this)
+            .transition().duration(500)
+            .attr("width", rad * 3 )             
+            .attr("height",rad * 3);
+
+        d3.selectAll(".circ")
+            .attr("width", d => d.ind === hoveredObject ? rad * 3 : rad * 2)
+            .attr("height", d => d.ind === hoveredObject ? rad * 3 : rad * 2)
+                    
+    });
+
+    locators.on('mouseleave', function(d) {
+        hoveredObject = null;
+        d3.select(this)
+            .transition().duration(500)
+            .attr("width", rad * 2)
+            .attr("height", rad * 2) 
+            
+        d3.selectAll(".circ")
+            .attr("width", rad * 2)
+            .attr("height", rad * 2)
+        
+        updateGrid();
+            
+    });
 
 }
 
