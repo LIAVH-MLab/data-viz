@@ -12,9 +12,6 @@ document.querySelectorAll('image').forEach(img => {
     img.addEventListener('mouseenter', function() {
         let imgID = this.id;
 
-        // get both elements with the id imageID and swap classes show and hide
-        // remove show
-        // console.log( document.querySelector(`#${imgID}.show`));
 
         let imageShow = document.querySelector(`#${imgID}.show`);
         let imageHide = document.querySelector(`#${imgID}.hide`);
@@ -26,6 +23,10 @@ document.querySelectorAll('image').forEach(img => {
         // add show
         imageHide.classList.remove('hide');
         imageHide.classList.add('show');
+
+        // get the text objects in the SVG with the same id as the image
+        let textShow = document.querySelector(`#${imgID}-text`);
+        textShow.classList.add('hovered');
 
     });
 
@@ -45,6 +46,9 @@ document.querySelectorAll('image').forEach(img => {
         // add show
         imageHide.classList.remove('hide');
         imageHide.classList.add('show');
+
+        let textShow = document.querySelector(`#${imgID}-text`);
+        textShow.classList.remove('hovered');
     });
 
 

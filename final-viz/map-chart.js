@@ -22,7 +22,6 @@ function makeChart( data ) {
 
     // --x
     let xScale = d3.scaleBand()
-        // .range([+5, width - margin.left - margin.right - 3])
         .range([0, width - margin.left - margin.right])
         .domain(arts.map(d => d.loc)) //X Scale is Block House
         .padding(0.35)
@@ -88,19 +87,6 @@ function makeChart( data ) {
         .force("collide", d3.forceCollide().strength(.1).radius(rad).iterations(1))
         // .alpha(0.3)
         .on("tick", tick);
-
-    // Features of the forces applied to the nodes:
-    // let simulation = d3.forceSimulation()
-    // .force("x", d3.forceX().strength(0.5).x( function(d){ return xScale(d.loc) } ))
-    // .force("y", d3.forceY().strength(0.1).y( function(d){ return yScale(d.level) } ))
-    // // .force("center", d3.forceCenter().x(width / 2).y(height / 2)) // Attraction to the center of the svg area
-    // // .force("charge", d3.forceManyBody().strength(1)) // Nodes are attracted one each other of value is > 0
-    // .force("collide", d3.forceCollide().strength(.1).radius(rad).iterations(1)) // Force that avoids circle overlapping
-    // .on("tick", tick);
-
-    // Apply these forces to the nodes and update their positions.
-    // Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
-
 
 
     // Axis
@@ -291,7 +277,6 @@ d3.csv("https://raw.githubusercontent.com/LIAVH-MLab/mohenjo-daro/refs/heads/mas
         y:+d.y,
         ind:i
     }));
-    console.log("Data: " , data);
 
     // Sort by Block - House (Loc)
     arts = _.sortBy(arts, [function(d) {
@@ -301,6 +286,11 @@ d3.csv("https://raw.githubusercontent.com/LIAVH-MLab/mohenjo-daro/refs/heads/mas
 
     makeChart( arts );
 
+
+
+
+    
+    // ---------------------------------------
     // ---- Map
     // Making a copy of the data for the map
     let arts1 = arts.map(d => ({

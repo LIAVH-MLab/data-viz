@@ -59,3 +59,22 @@ main {
 image {
     cursor: pointer;
 }
+
+svg > text {
+    font-size: 0.8rem;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+    width: 250px;
+    opacity: 0.4;
+}
+
+
+svg > text > .title {
+    font-size: 0.8rem;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+}
+
+.hovered {
+    opacity: 1 !important;
+}
