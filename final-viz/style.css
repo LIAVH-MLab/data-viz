@@ -83,7 +83,7 @@ svg {
 }
 
 .btn-group {
-    margin-top: 6rem;
+    margin-top: 5rem;
     display: flex;
     flex-direction: row;
     gap:0.5rem;
@@ -91,8 +91,8 @@ svg {
 }
 
 .btn-group > button {
-    border: none;
-    background-color: #afafaf;
+    border: 1px solid #333;
+    background-color: #d3d3d3;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     font-size: 1rem;
@@ -135,7 +135,50 @@ canvas {
     height: auto;
 }
 
-.hover {
-    width: calc(4.5 * 3) !important;
-    height: calc(4.5 * 3) !important;
+.legend{
+    margin-left:35px;
+    margin-top: 1rem;
+    width: 550px;
+    height: 120px;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.legend-items {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    max-height: 75px;
+    flex: 1 1 auto; /* Allow items to wrap within the container */
+    box-sizing: border-box;
+    width: 350px;
+}
+
+.legend-title {
+    min-width:200px;
+}
+
+.legend-item {
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.legend-item > p {
+    margin: 0;
+}
+
+.legend-icon {
+    width: 14px;
+    height: 14px;
+}
+
+.clicked {
+    background-color: #b9b9b9 !important;
+    border: 1px solid #999 !important;
 }

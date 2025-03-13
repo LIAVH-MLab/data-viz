@@ -27,6 +27,45 @@ const icons = {
     "Well": "well",
 }
 
+function createLegend() {
+    // 1. artefacts
+    // get the .legend-items inside the .legend
+    const artefactItems = {
+        "Feeding / holding": "feeding-holding",
+        "Trade + currency / access":  "trade-currency-access",
+        "Beauty / Affect" : "beauty-affect",
+        "Making / Craft / Food" : "making-craft copy",
+        "Uncategorized" : "uncategorized",
+        "Play/ Spiritual" : "play-spiritual",
+    }
+
+    let legendItems = document.querySelectorAll(".legend-artefacts > .legend-items")[0];
+    
+    Object.keys(artefactItems).forEach((key) => {
+        let item = document.createElement("div");
+        item.classList.add("legend-item");
+        item.innerHTML = `<img src="./assets/icons/${artefactItems[key]}.svg" class="legend-icon"></img><p>${key}</p>`;
+        legendItems.appendChild(item);
+    });
+
+    // 2. features
+    const featureItems = {
+        "Water Platforms" : "water-platforms",
+        "Drainage": "drainage",
+        "Well": "well",
+    }
+
+    let featureItemsDiv = document.querySelectorAll(".legend-architecture > .legend-items")[0];
+
+    Object.keys(featureItems).forEach((key) => {
+        let item = document.createElement("div");
+        item.classList.add("legend-item");
+        item.innerHTML = `<img src="./assets/icons/${featureItems[key]}.svg" class="legend-icon"></img><p>${key}</p>`;
+        featureItemsDiv.appendChild(item);
+    });
+
+}
+
 function createScatterPlot( data , xScale, yScale) {
 
     // Set up Canvas
@@ -103,7 +142,6 @@ function createScatterPlot( data , xScale, yScale) {
 
     // Stop any existing simulation
     if (window.simulation) {
-        console.log("Stopping existing simulation");
         window.simulation.stop();
     }
 
@@ -130,7 +168,6 @@ function createScatterPlot( data , xScale, yScale) {
     join.on("mouseenter", function(d) {
         
         hoveredObject = d['ind'];
-        console.log("hoveredObject", hoveredObject)
 
         d3.selectAll(".circ")
             .attr("height", rad * 2)
@@ -231,6 +268,10 @@ function createScatterPlot( data , xScale, yScale) {
         let value = btn.attr("value");
 
         if (value !== "All") {
+
+            d3.selectAll(".btn").classed("clicked", false);
+            btn.classed("clicked", true);
+
             join.transition().duration(250)
                 .attr("style", d=> d.time === value ?  "filter:''" : "filter: grayscale(1) brightness(1.5);" );
 
@@ -238,6 +279,10 @@ function createScatterPlot( data , xScale, yScale) {
                 .attr("style", d=> d.time === value ?  "filter:''" : "filter: grayscale(1) brightness(1.5);" );
 
         } else {
+
+            d3.selectAll(".btn").classed("clicked", false);
+            btn.classed("clicked", true);
+
             join.transition().duration(250)
                 .attr("style","filter: ''" );
             
@@ -310,8 +355,6 @@ function updateGrid() {
         .key(d => d.loc)
         .entries(arts1);
 
-    console.log( groupedData )
-
     // Flatten the grouped data while maintaining the group structure
     let flattenedData = [];
     groupedData.forEach(group => {
@@ -321,12 +364,10 @@ function updateGrid() {
             flattenedData.push(d);
         });
     });
-    console.log( "flat Data:" , flattenedData )
 
-        // Find the maximum groupIndex
-        let maxGroupIndex = d3.max(flattenedData, d => d.groupIndex);
-        let maxMove = ((Math.floor( maxGroupIndex / gnum) % 12) * carpan) - (carpan / 2);
-        console.log("maxMove", maxMove, maxGroupIndex)
+    // Find the maximum groupIndex
+    let maxGroupIndex = d3.max(flattenedData, d => d.groupIndex);
+    let maxMove = ((Math.floor( maxGroupIndex / gnum) % 12) * carpan) - (carpan / 2);
 
     locators.data(flattenedData)
         .attr("x", function(d) {
@@ -459,3 +500,6 @@ d3.csv("https://raw.githubusercontent.com/LIAVH-MLab/mohenjo-daro/refs/heads/mas
     map.on("move", updateGrid);
 
 });
+
+createLegend();
+
