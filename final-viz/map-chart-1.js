@@ -161,8 +161,10 @@ function createScatterPlot( data , xScale, yScale) {
     d3.select('body')
         .append('div')
         .attr('id', 'tooltip')
-        .style('opactiy', 0)
+        .style('opacity', 1)
         .style('position', 'absolute')
+        .style('left', '0px')
+        .style('top', '0px')
         .style('pointer-events', 'none'); // Ensure the tooltip does not interfere with mouse events
     
     join.on("mouseenter", function(d) {
