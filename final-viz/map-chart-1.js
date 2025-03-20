@@ -1,5 +1,7 @@
 
-let rad = 4.5;
+let rad = 6;
+let radDiamater = rad * 2;
+let radHover = rad * 3;
 let chartWidth = document.getElementById('chart').clientWidth;
 let chartHeight = document.getElementById('chart').clientHeight;
 let hoveredObject;
@@ -19,9 +21,9 @@ const icons = {
     "Feeding / holding": "feeding-holding",
     "Trade + currency / access":  "trade-currency-access",
     "Beauty / Affect" : "beauty-affect",
-    "Making / Craft / Food" : "making-craft copy",
+    "Making / Craft / Food" : "making-craft",
     "Uncategorized" : "uncategorized",
-    "Play/ Spiritual" : "play-spiritual",
+    "Play / Spiritual" : "play-spiritual",
     "Water Platforms" : "water-platforms",
     "Drainage": "drainage",
     "Well": "well",
@@ -34,9 +36,9 @@ function createLegend() {
         "Feeding / holding": "feeding-holding",
         "Trade + currency / access":  "trade-currency-access",
         "Beauty / Affect" : "beauty-affect",
-        "Making / Craft / Food" : "making-craft copy",
+        "Making / Craft / Food" : "making-craft",
         "Uncategorized" : "uncategorized",
-        "Play/ Spiritual" : "play-spiritual",
+        "Play / Spiritual" : "play-spiritual",
     }
 
     let legendItems = document.querySelectorAll(".legend-artefacts > .legend-items")[0];
@@ -65,13 +67,11 @@ function createLegend() {
     });
 
 }
-
 function createScatterPlot( data , xScale, yScale) {
 
     // Set up Canvas
     let container = d3.selectAll("#container");
     let body = container.append("g").style("transform", `translate(${margin.left}px,${margin.top}px)`);
-
     // Y Grid (Vertical)
     let yticks = yScale.ticks()
 
@@ -127,8 +127,8 @@ function createScatterPlot( data , xScale, yScale) {
         .attr("class", "circ")
         .attr("id",d => d['ind'])
         .attr("xlink:href", d => { return `./assets/icons/${icons[d['Class']]}.svg`; })
-        .attr("width", rad * 2) // Set the width of the icon
-        .attr("height", rad * 2) // Set the height of the icon
+        .attr("width", radDiamater) // Set the width of the icon
+        .attr("height", radDiamater) // Set the height of the icon
         .attr("x", d => xScale(d.loc) - rad) // Adjust x position to center the icon
         .attr("y", d => yScale(d.level) - rad); // Adjust y position to center the icon
 
@@ -172,18 +172,18 @@ function createScatterPlot( data , xScale, yScale) {
         hoveredObject = d['ind'];
 
         d3.selectAll(".circ")
-            .attr("height", rad * 2)
-            .attr("width", rad * 2)
+            .attr("height", radDiamater)
+            .attr("width", radDiamater)
 
-        // Scale up the icon
+        // Scale up the icon / this is ojbect hovered
         d3.select(this)
             .transition().duration(500)
-            .attr("width", rad *3 )             
-            .attr("height",rad *3);
+            .attr("width", radHover )             
+            .attr("height",radHover);
 
-        d3.selectAll(".map-dots")
-            .attr("width", d => d.ind === hoveredObject ? rad * 4 : rad * 2)
-            .attr("height", d => d.ind === hoveredObject ? rad * 4 : rad * 2)
+        d3.selectAll(".map-dots") // selects all map objects
+            .attr("width", d => d.ind === hoveredObject ? radHover : radDiamater)
+            .attr("height", d => d.ind === hoveredObject ? radHover : radDiamater)
             .attr("x", function(d){
                 if (d.ind === hoveredObject){
                     let currentX = d3.select(this).attr("x");
@@ -224,12 +224,12 @@ function createScatterPlot( data , xScale, yScale) {
 
         
         d3.select(this)
-            .attr("width", rad * 2)
-            .attr("height", rad * 2)     
+            .attr("width", radDiamater)
+            .attr("height", radDiamater)     
         
         d3.selectAll(".map-dots")
-            .attr("width", rad * 2)
-            .attr("height", rad * 2)
+            .attr("width", radDiamater)
+            .attr("height", radDiamater)
         
         updateGrid();
             
@@ -255,11 +255,12 @@ function createScatterPlot( data , xScale, yScale) {
         if (d.photo !== ""){
             tooltipContent += `<br><img src=${d.photo}></img>`
         }
-
+// Question about Tooltip positioning: I want to position the tooltip container or object to center on the icon vertically 
         // tooltip is positioned here
         d3.select('#tooltip')
             .style('left', (px+75) + 'px')
-            .style('top', (py+250) + 'px')
+            //.style('top', (py+150) + 'px')
+            .style('top', (py+125) + 'px')
             .style("background-color", "rgb(255,255,255,0.9)")
             .html( tooltipContent )
     });
@@ -310,15 +311,15 @@ function resizeSVG(arts) {
 function calculateScales(data) {
     let min = d3.min(data.map(d => d.level));
     let max = d3.max(data.map(d => d.level));
-
+//-- adjusted padding from .5 to .75 to center data in chart after resizing icons
     let xScale = d3.scaleBand()
         .range([0, chartWidth - margin.left - margin.right])
         .domain(data.map(d => d.loc))
-        .padding(0.35);
+        .padding(.75);
 
-        // -4 and +4 are for the padding
+        // -4 and +4 are for the padding -- adjusted bottom to align with -35ft
     let yScale = d3.scaleLinear()
-        .domain([min - 4, max + 4])
+        .domain([min - 1.73, max + 4])
         .range([(chartHeight - margin.top - margin.bottom), 0]);
 
     return { xScale, yScale };
@@ -349,7 +350,7 @@ function createMapBG() {
 }
 
 function updateGrid() {
-    carpan = (rad*2)+1; // multiplier for distance between grid objects (dots)
+    carpan = (radDiamater)+1; // multiplier for distance between grid objects (dots)
     gnum = 8; // number of columns
 
     // Group data by loc
@@ -367,7 +368,8 @@ function updateGrid() {
         });
     });
 
-    // Find the maximum groupIndex
+    // Find the maximum groupIndex 
+    // adjust location of map grids here : Max move is 
     let maxGroupIndex = d3.max(flattenedData, d => d.groupIndex);
     let maxMove = ((Math.floor( maxGroupIndex / gnum) % 12) * carpan) - (carpan / 2);
 
@@ -375,14 +377,16 @@ function updateGrid() {
         .attr("x", function(d) {
             let p = project([d.x, d.y]);
             let move = ((d.groupIndex % gnum) * carpan) - (carpan / 2);
-            let position = p.x + move - (gnum*carpan/2);
+            let position = p.x + move - 35;
+            //let position = p.x + move - (gnum*carpan/2);
             return position;
         })
         .attr("y", function(d) {
             let p = project([d.x, d.y]);
             let move = ((Math.floor(d.groupIndex / gnum) % 12) * carpan) - (carpan / 2);
             // console.log("move", move)
-            let position = p.y + move - maxMove;
+            let position = p.y + move - 55;
+           // let position = p.y + move - maxMove;
             return position;
         });
 }
@@ -412,8 +416,8 @@ function createMap( data ){
         .attr("class","map-dots")
         .attr("id", d => d.ind)
         .attr("xlink:href", d => { return `./assets/icons/${icons[d['Class']]}.svg`; })
-        .attr("width", d => d.ind === hoveredObject ? rad * 3 : rad * 2) // Set the width of the icon
-        .attr("height", d => d.ind === hoveredObject ? rad * 3 : rad * 2)
+        .attr("width", d => d.ind === hoveredObject ? radHover : radDiamater) // Set the width of the icon
+        .attr("height", d => d.ind === hoveredObject ? radHover : radDiamater)
         .attr("x", d => project([d.x, d.y]).x - rad) // Adjust x position to center the icon
         .attr("y", d => project([d.x, d.y]).y - rad); // Adjust y position to center the icon
 
@@ -423,28 +427,25 @@ function createMap( data ){
     locators.on("mouseenter", function(d) {
         hoveredObject = d['ind'];
         console.log("hoveredObject", hoveredObject)
-
+        d3.selectAll(".circ")
+            .attr("width", d => d.ind === hoveredObject ? radHover : radDiamater)
+            .attr("height", d => d.ind === hoveredObject ? radHover : radDiamater)
         d3.select(this)
             .transition().duration(500)
-            .attr("width", rad * 3 )             
-            .attr("height",rad * 3);
-
-        d3.selectAll(".circ")
-            .attr("width", d => d.ind === hoveredObject ? rad * 3 : rad * 2)
-            .attr("height", d => d.ind === hoveredObject ? rad * 3 : rad * 2)
-                    
+            .attr("width", radHover )             
+            .attr("height",radHover);          
     });
 
     locators.on('mouseleave', function(d) {
         hoveredObject = null;
         d3.select(this)
             .transition().duration(500)
-            .attr("width", rad * 2)
-            .attr("height", rad * 2) 
+            .attr("width", radDiamater)
+            .attr("height", radDiamater) 
             
         d3.selectAll(".circ")
-            .attr("width", rad * 2)
-            .attr("height", rad * 2)
+            .attr("width", radDiamater)
+            .attr("height", radDiamater)
         
         updateGrid();
             
