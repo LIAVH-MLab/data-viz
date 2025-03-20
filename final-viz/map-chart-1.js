@@ -106,7 +106,7 @@ function createScatterPlot( data , xScale, yScale) {
         .attr("class", "xaxis")
         .attr("id", "x")
         .style("transform", `translate( ${margin.left}px ,${chartHeight-margin.bottom}px)`)
-        .style("font-size", "11px")
+        .style("font-size", "13px")
         .call(xAxis)
         .selectAll("text")
         .style("text-anchor", "middle")
