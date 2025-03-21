@@ -11,14 +11,7 @@ src: url('./assets/fonts/source-sans-pro/SourceSansPro-Bold.otf') format('openty
 font-weight: bold;
 font-style: normal;
 }
-/* trying to add semibold here but it doesn't work 
-@font-face {
-    font-family: 'Source Sans Pro';
-    src: url('./assets/fonts/source-sans-pro/SourceSansPro-Semibold.otf') format('opentype');
-    font-weight: semibold;
-    font-style: bold;
-    }
-*/
+
 /* light */
 @font-face {
 font-family: 'Source Sans Pro';
@@ -137,14 +130,15 @@ canvas {
     border: 8px;
     border-radius: 8px;
     pointer-events: none;
-    max-width: 150px;
+    max-width: 175px;
     
 }
 
 #tooltip img {
     padding-top: 8px;
-    width: 145px;
+    width: 100%;
     height: auto;
+    object-fit: cover;
 }
 
 .legend{

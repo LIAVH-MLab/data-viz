@@ -86,6 +86,15 @@ function createScatterPlot( data , xScale, yScale) {
         .attr("y2", d => yScale(d))
         .attr("stroke", "#333")
         .attr("stroke-width", "0.5px");
+
+    // Add label for y=0 grid line
+    body.append("text")
+        .attr("x",  5)
+        .attr("y", yScale(0) - 5)
+        .attr("text-anchor", "start")
+        .attr("font-size", "12px")
+        .attr("fill", "#333")
+        .text("Excavation Depth below datum (ft)");
     
     //----y Linear Scale
     let yAxis = d3.axisLeft(yScale);
@@ -217,12 +226,12 @@ function createScatterPlot( data , xScale, yScale) {
     })
 
     join.on('mouseleave', function(d) {
+        
         hoveredObject = null;
         d3.select('#tooltip')
             .transition().duration(200)
             .style('opacity', 0);
 
-        
         d3.select(this)
             .attr("width", radDiamater)
             .attr("height", radDiamater)     
@@ -237,7 +246,7 @@ function createScatterPlot( data , xScale, yScale) {
 
     join.on('mousemove', function(d) {
 
-        let [px,py] = d3.mouse(this)
+        let [px, py] = d3.mouse(document.body);
 
         // Tooltip content is here. if ones are conditional
         let tooltipContent = `<p2><b>Location: </b> ${d.Block}-${d.House}-${d.Room}
@@ -255,15 +264,31 @@ function createScatterPlot( data , xScale, yScale) {
         if (d.photo !== ""){
             tooltipContent += `<br><img src=${d.photo}></img>`
         }
-// Question about Tooltip positioning: I want to position the tooltip container or object to center on the icon vertically 
-        // tooltip is positioned here
+        
+        // Set the tooltip content first to get the height
         d3.select('#tooltip')
-            .style('left', (px+75) + 'px')
-            //.style('top', (py+150) + 'px')
-            .style('top', (py+125) + 'px')
+            .html(tooltipContent);
+
+        // Get the tooltip height
+        // let tooltipHeight = d3.select('#tooltip').node().getBoundingClientRect().height;
+        // console.log( tooltipHeight,  py - (tooltipHeight / 2) );
+        
+
+        // Get the tooltip dimensions
+        let tooltipNode = d3.select('#tooltip').node();
+        let tooltipWidth = tooltipNode.getBoundingClientRect().width;
+        let tooltipHeight = tooltipNode.getBoundingClientRect().height;
+
+        // Position the tooltip to the middle of the icon vertically and horizontally
+        d3.select('#tooltip')
+            .style('left', (px + 15) + 'px')
+            .style('top', (py - tooltipHeight / 2) + 'px')
             .style("background-color", "rgb(255,255,255,0.9)")
-            .html( tooltipContent )
-    });
+            .html(tooltipContent);
+
+
+
+        });
 
     // create an event listener of the buttons .btn
     d3.selectAll(".btn").on("click", function() {
