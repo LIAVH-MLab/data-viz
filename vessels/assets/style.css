@@ -31,5 +31,43 @@ html, body {
 iframe {
     border: none;
     height: 250px;
+    width: 100%;
 }
 
+.vessel-image {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+#vessel-container {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center;
+    justify-content: center; */
+    height: 100%;
+    width: 100%;
+    /* padding: 1rem; */
+    box-sizing: border-box;
+    margin: 6rem 0;
+}
+
+.vessel-item {
+    margin: 2rem 0;
+}
+
+.vessel-item :first-child {
+    margin-top: 0;
+}
+
+.vessel-item :last-child {
+    margin-bottom: 0;
+}
+
+h1 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #333;
+    margin-left: 1rem;
+}
