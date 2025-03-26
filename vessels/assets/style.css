@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('./assets/fonts/source-sans-pro/SourceSansPro-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+    
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('./assets/fonts/source-sans-pro/SourceSansPro-Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+    
+    /* light */
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('./assets/fonts/source-sans-pro/SourceSansPro-Light.otf') format('opentype');
+    font-weight: light;
+    font-style: normal;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin:0;
+    font-family: 'Source Sans Pro', sans-serif;  
+    background-color: #F5F2EC; 
+}
+
+iframe {
+    border: none;
+    height: 250px;
+}
+
