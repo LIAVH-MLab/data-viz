@@ -1,73 +1,110 @@
 @font-face {
     font-family: 'Source Sans Pro';
-    src: url('./assets/fonts/source-sans-pro/SourceSansPro-Regular.otf') format('opentype');
+    src: url('./fonts/source-sans-pro/SourceSansPro-Regular.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
     
 @font-face {
     font-family: 'Source Sans Pro';
-    src: url('./assets/fonts/source-sans-pro/SourceSansPro-Bold.otf') format('opentype');
+    src: url('./fonts/source-sans-pro/SourceSansPro-Bold.otf') format('opentype');
     font-weight: bold;
     font-style: normal;
 }
-    
-    /* light */
-@font-face {
-    font-family: 'Source Sans Pro';
-    src: url('./assets/fonts/source-sans-pro/SourceSansPro-Light.otf') format('opentype');
-    font-weight: light;
-    font-style: normal;
-}
+
 
 html, body {
-    height: 100%;
+    /* height: 100%; */
     width: 100%;
     margin:0;
     font-family: 'Source Sans Pro', sans-serif;  
-    background-color: #F5F2EC; 
-}
-
-iframe {
-    border: none;
-    height: 250px;
-    width: 100%;
-}
-
-.vessel-image {
-    display: flex;
-    gap: 1rem;
-    padding: 1rem;
+    background-color: #FBF7EC; 
+    font-size: 12px;
     box-sizing: border-box;
+}
+
+.home-button {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 7rem auto;
+    max-width: calc(1024px - 3em);
+    padding: 0 3rem;
+    
 }
 
 #vessel-container {
     display: flex;
     flex-direction: column;
-    /* align-items: center;
-    justify-content: center; */
-    height: 100%;
+    gap: 2rem;
     width: 100%;
-    /* padding: 1rem; */
-    box-sizing: border-box;
-    margin: 6rem 0;
+}
+
+.images-container {
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    gap:2rem;
 }
 
 .vessel-item {
     margin: 2rem 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
 }
 
-.vessel-item :first-child {
-    margin-top: 0;
-}
-
-.vessel-item :last-child {
-    margin-bottom: 0;
+.vessel-model {
+    width: 100%;
 }
 
 h1 {
-    font-size: 1.75rem;
+    font-size: 3rem;
     font-weight: bold;
     color: #333;
-    margin-left: 1rem;
+    margin: 0.5rem 0;
+}
+
+img {
+    width: 100%;
+    /* max-width: 650px; */
+    height: auto;
+    object-fit: cover;
+}
+
+iframe {
+    border: 1px solid #ccc;
+    width: 100%;
+    height: 100%;
+}
+
+#grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+#grid-container > .vessel-item {
+    margin: 0;
+    aspect-ratio: 3 / 2;
+
+}
+
+.text-block > h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0.5rem 0;
+}
+
+.text-block > p {
+    font-size: 1.2rem;
+    color: #555;
+    margin: 0;
 }

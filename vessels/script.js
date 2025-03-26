@@ -2,50 +2,86 @@ console.log("Vessels script loaded");
 
 
 d3.csv("./assets/data/mjd-vessels.csv", function(error, data) {
+
+    data = data.map((d,i) => ({
+        order : +d.order,
+        'Column 3': d['Column 3'],
+        'Link': d['Link'],
+    }));
+
+    data = _.sortBy(data, 'order');
     console.log("Data loaded", data);
 
+
     let container = d3.select("#vessel-container");
-    console.log("Container selected", container);
+
+    // grid
+    // let grid = document.createElement("div");
+    // grid.className = "grid-container";
+    // container.node().appendChild(grid);
+    let grid = document.querySelector("#grid-container");
+
 
     data.forEach(element => {
+
+
         // add a div for each vessel in the container
         let item = document.createElement("div");
         let idName = element['Column 3'].toLowerCase().replace(/\s+/g, '-');
         item.id = `vessel-${idName}`;
         item.className = "vessel-item";
         container.node().appendChild(item);
-        
-        // add an h1 for the vessel name
-        let h1 = document.createElement("h1");
-        h1.innerHTML = element['Column 3'];
-        item.appendChild(h1);
 
-        // created an emoty div, class vessel-image
-        let vesselImage = document.createElement("div");
-        
-        vesselImage.className = "vessel-image";
-        item.appendChild(vesselImage);
-        
-        // add an iframe for the vessel image, using the link from the csv
         let frameLink = `${element['Link']}/embed`;
-        // console.log("Frame link", frameLink);
-
-        let iframe = document.createElement("iframe");
-        iframe.src = frameLink;
-        iframe.allow = "autoplay; encrypted-media";
 
 
         if (idName === 'pot-2') {
             console.log("pot-2 is here")
-            let image = document.createElement("img");
-            image.src = "./assets/images/pot-2.jpg";
-            image.style.width = "100%";
-            image.style.height = "100%";
 
-            vesselImage.appendChild(image);
+            let highlight = document.querySelector("#highlight");
+            highlight.appendChild(item);
+
+            let imagesContainer = document.createElement("div");
+            imagesContainer.className = "images-container";
+            item.appendChild(imagesContainer);
+            
+            let image1 = document.createElement("img");
+            image1.src = "./assets/images/pot-2a.jpg";
+
+            let image2 = document.createElement("img");
+            image2.src = "./assets/images/pot-2b.jpg";
+
+            imagesContainer.appendChild(image1);
+            imagesContainer.appendChild(image2);
+            
+            // created an emoty div, class vessel-image
+            let vesselModel = document.createElement("div");
+            
+            vesselModel.className = "vessel-model";
+            item.appendChild(vesselModel);
+            
+            let iframe = document.createElement("iframe");
+            iframe.src = frameLink;
+            vesselModel.appendChild(iframe);
+        } else {
+
+            grid.appendChild(item);
+            let vesselModel = document.createElement("div");
+            
+            vesselModel.className = "vessel-model";
+            grid.appendChild(vesselModel);
+            
+            let iframe = document.createElement("iframe");
+            iframe.src = frameLink;
+            vesselModel.appendChild(iframe);
+
+            item.appendChild(vesselModel);
+
+
         }
+        
 
-        vesselImage.appendChild(iframe);
+
 
     });
 
