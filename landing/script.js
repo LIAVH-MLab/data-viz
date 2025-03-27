@@ -1,9 +1,11 @@
+
+const root = "https://liavh-mlab.github.io/data-viz"
 const links = {
-    'dancing-girl': '/',
-    'wall': '/wall',
+    'dancing-girl': `${root}/final-viz/`,
+    'wall': `${root}/perspective/`,
     'section': '/section',
-    'well': '/well',
-    'vessel': 'data-viz/final-viz',
+    'well': `${root}/videos/`,
+    'vessel': `${root}/vessels/`,
 
 }
 
