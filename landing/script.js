@@ -4,7 +4,7 @@ const links = {
     'dancing-girl': `${root}/final-viz/`,
     'wall': `${root}/perspective/`,
     'section': '/section',
-    'well': `${root}/videos/`,
+    'well': `${root}/video/`,
     'vessel': `${root}/vessels/`,
 
 }

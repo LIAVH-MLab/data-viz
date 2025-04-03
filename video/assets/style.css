@@ -40,6 +40,17 @@ html, body {
     gap: 2rem;
 }
 
+.container-video {
+    display: flex;
+    flex-direction: column;
+    max-width: calc(1200px - 3em);
+    padding: 7rem 3rem;
+    box-sizing: border-box;
+    height: 100%;
+    margin: 0 auto;
+    gap: 1rem;
+}
+
 #vessel-container {
     display: flex;
     flex-direction: column;
