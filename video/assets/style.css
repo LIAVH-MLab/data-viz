@@ -48,7 +48,7 @@ html, body {
     box-sizing: border-box;
     height: 100%;
     margin: 0 auto;
-    gap: 1rem;
+    gap: 2rem;
 }
 
 #vessel-container {
@@ -121,4 +121,10 @@ iframe {
     font-size: 1.2rem;
     color: #555;
     margin: 0;
+}
+
+.text-block-2> p {
+    font-size: 1.2rem;
+    color: #555;
+    margin: 2rem 0;
 }
