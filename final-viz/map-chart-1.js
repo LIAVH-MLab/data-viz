@@ -261,18 +261,24 @@ function createScatterPlot( data , xScale, yScale) {
         if (d.Text !== ""){
             tooltipContent += `<br><b>Description: </b>${d.Text}`
         }
-        if (d.photo !== ""){
-            tooltipContent += `<br><img src=${d.photo}></img>`
+        // if (d.photo !== "" && d.photo !== undefined && d.photo !== null) {
+        //     tooltipContent += `<br><img src=${d.photo}></img>`;
+        // }
+
+        if (d.photo !== "" && d.photo !== undefined && d.photo !== null) {
+            let img = new Image();
+            img.onload = function() {
+                tooltipContent += `<br><img src=${d.photo}></img>`;
+            };
+            img.onerror = function() {
+                console.warn("Image failed to load:", d.photo);
+            };
+            img.src = d.photo; // This triggers the image loading process
         }
         
         // Set the tooltip content first to get the height
         d3.select('#tooltip')
             .html(tooltipContent);
-
-        // Get the tooltip height
-        // let tooltipHeight = d3.select('#tooltip').node().getBoundingClientRect().height;
-        // console.log( tooltipHeight,  py - (tooltipHeight / 2) );
-        
 
         // Get the tooltip dimensions
         let tooltipNode = d3.select('#tooltip').node();
