@@ -261,20 +261,19 @@ function createScatterPlot( data , xScale, yScale) {
         if (d.Text !== ""){
             tooltipContent += `<br><b>Description: </b>${d.Text}`
         }
-        // if (d.photo !== "" && d.photo !== undefined && d.photo !== null) {
-        //     tooltipContent += `<br><img src=${d.photo}></img>`;
-        // }
-
         if (d.photo !== "" && d.photo !== undefined && d.photo !== null) {
-            let img = new Image();
-            img.onload = function() {
-                tooltipContent += `<br><img src=${d.photo}></img>`;
-            };
-            img.onerror = function() {
-                console.warn("Image failed to load:", d.photo);
-            };
-            img.src = d.photo; // This triggers the image loading process
+            tooltipContent += `<br><img src=${d.photo}></img>`;
         }
+
+        // if (d.photo !== "" && d.photo !== undefined && d.photo !== null) {
+        //     // tooltipContent += `<br><img src=${d.photo}></img>`;
+            
+        //     let img = new Image();
+        //     img.onload = function() {
+        //         tooltipContent += `<br><img src=${d.photo}></img>`;
+        //     };
+        //     img.src = d.photo; // This triggers the image loading process
+        // }
         
         // Set the tooltip content first to get the height
         d3.select('#tooltip')
@@ -485,7 +484,7 @@ function createMap( data ){
 }
 
 
-d3.csv("https://raw.githubusercontent.com/LIAVH-MLab/mohenjo-daro/refs/heads/master/data/20250312_MJD_processed_data_reclassified.csv", function(error, data) {
+d3.csv("https://raw.githubusercontent.com/LIAVH-MLab/mohenjo-daro/refs/heads/master/data/20250312_MJD_processed_data_reclassified_2.csv", function(error, data) {
 
     // Filter Block and Artefact
     let filteredData = data.filter( function(d) {
