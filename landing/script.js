@@ -3,10 +3,9 @@ const root = "https://liavh-mlab.github.io/data-viz"
 const links = {
     'dancing-girl': `${root}/final-viz/`,
     'wall': `${root}/perspective/`,
-    'section': '/section',
+    'section': '/section', // make sure to styart the new address with the full http:.....
     'well': `${root}/video/`,
     'vessel': `${root}/vessels/`,
-
 }
 
 // create an event listener for image on hover
