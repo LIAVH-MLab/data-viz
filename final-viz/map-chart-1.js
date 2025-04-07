@@ -484,7 +484,7 @@ function createMap( data ){
 }
 
 
-d3.csv("https://raw.githubusercontent.com/LIAVH-MLab/mohenjo-daro/refs/heads/master/data/20250312_MJD_processed_data_reclassified_2.csv", function(error, data) {
+d3.csv("https://raw.githubusercontent.com/LIAVH-MLab/mohenjo-daro/refs/heads/master/data/20250407_MJD_processed_data.csv", function(error, data) {
 
     // Filter Block and Artefact
     let filteredData = data.filter( function(d) {
@@ -504,7 +504,7 @@ d3.csv("https://raw.githubusercontent.com/LIAVH-MLab/mohenjo-daro/refs/heads/mas
         time: d.Time_Cat,
         Type: d.Type,
         Feature:d.Feature,
-        photo: d.photo,
+        photo: d.Path,
         loc: d.Block + '-' + d.House,
         x:+d.x,
         y:+d.y,
