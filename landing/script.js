@@ -3,7 +3,8 @@ const root = "https://liavh-mlab.github.io/data-viz"
 const links = {
     'dancing-girl': `${root}/final-viz/`,
     'wall': `${root}/perspective/`,
-    'section': '/section', // make sure to styart the new address with the full http:.....
+    'transect': 'https://mohenjo-daro.bubbleapps.io/', 
+    // make sure to styart the new address with the full http:.....https://mohenjo-daro.bubbleapps.io/
     'well': `${root}/video/`,
     'vessel': `${root}/vessels/`,
 }
